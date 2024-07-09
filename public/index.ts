@@ -28,13 +28,12 @@ import awardimage4 from "./awardsvg/shieldwithleaves.png";
 // Industry Experience Phtos
 // Industry Experience Phtos
 
-import indExp1 from "./indExp/indExp1.jpg"
-import indExp2 from "./indExp/indExp2.jpg"
-import indExp3 from "./indExp/indExp3.jpg"
-import indExp4 from "./indExp/indExp4.jpg"
-import indExp5 from "./indExp/indExp5.jpg"
-import indExp6 from "./indExp/indExp6.jpg"
+import indExp1 from "./indExp/indExp1.jpg";
+import indExp2 from "./indExp/indExp2.jpg";
+import indExp3 from "./indExp/indExp3.jpg";
+import indExp4 from "./indExp/indExp4.jpg";
 
+import indExp6 from "./indExp/indExp6.jpg";
 
 // Industry Experience Phtos
 // Industry Experience Phtos
@@ -141,13 +140,8 @@ export {
   indExp2,
   indExp3,
   indExp4,
-  indExp5,
   indExp6,
 };
-
-
-
-
 
 // hero Banner Info
 // hero Banner Info
@@ -573,14 +567,7 @@ export const industryExperience: industryExperienceInterface[] = [
   },
   {
     id: 5,
-    image: indExp5,
-    description:
-      "Effective communication skills for interacting with clients and stakeholders.",
-    title: "Communication Skills",
-  },
-  {
-    id: 6,
-    image: indExp5,
+    image: indExp6,
     description:
       "Adaptability to changing environments and continuous learning mindset.",
     title: "Adaptability",
@@ -1107,7 +1094,6 @@ import LogoDesigner from "./serviceillustartion/graphic/logoDesigner.webp";
 import Packaging from "./serviceillustartion/graphic/packgingdesign.jpg";
 
 import brandidentity from "./serviceillustartion/graphic/brandIdentity.jpg";
-
 
 export interface GraphicsDesignContentInterface2 {
   section: SectionNames;
