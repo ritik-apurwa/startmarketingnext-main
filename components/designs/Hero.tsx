@@ -3,11 +3,21 @@
 import React, { useState, useEffect, useCallback, memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaCamera, FaCloud, FaCode, FaHashtag, FaMobile, FaPaintBrush } from "react-icons/fa";
+import {
+  FaCamera,
+  FaCloud,
+  FaCode,
+  FaHashtag,
+  FaMobile,
+  FaPaintBrush,
+} from "react-icons/fa";
 import { IconType } from "react-icons";
-import {SignInButton} from "@clerk/nextjs"
-
-
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignOutButton,
+} from "@clerk/nextjs";
 
 interface BannerServiceInterface {
   title: string;
@@ -47,7 +57,13 @@ const AnimatedText = memo(({ services }: AnimatedTextProps) => {
       }, pauseDuration / 2);
     } else {
       setTimeout(
-        () => setText(fullText.substring(0, isDeleting ? text.length - 1 : text.length + 1)),
+        () =>
+          setText(
+            fullText.substring(
+              0,
+              isDeleting ? text.length - 1 : text.length + 1
+            )
+          ),
         isDeleting ? deletingSpeed : typingSpeed
       );
     }
@@ -74,30 +90,44 @@ AnimatedText.displayName = "AnimatedText";
 
 const HeroBannerNavigation = memo(() => (
   <div className="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-    <Button asChild
+    <SignedIn>
+      <Button
+        asChild
+        variant="outline"
+        className="text-white bg-transparent rounded-full"
+        size="default"
+      >
+        <SignOutButton />
+      </Button>
+    </SignedIn>
+   
+      <SignedOut>
+        <Button
+          asChild
+          variant="outline"
+          className="text-white bg-transparent rounded-full"
+          size="default"
+        >
+          <SignInButton />
+        </Button>
+      </SignedOut>
+  
 
-      className="bg-transparent border-2 h-12 flex items-center  border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition duration-300 ease-in-out"
-    >
-      <SignInButton/>
-    </Button>
     <Link
       href="/contact"
       className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-transparent hover:text-white hover:border-white hover:border-2 transition duration-300 ease-in-out"
     >
       Contact Us
     </Link>
-
- 
   </div>
 ));
 
 HeroBannerNavigation.displayName = "HeroBannerNavigation";
-import Banner from "@/public/heroimages/bannerImg.jpg"
+import Banner from "@/public/heroimages/bannerImg.jpg";
 import { Button } from "../ui/button";
 import { useStoreUserEffect } from "../providers/auth-status";
 
 const Hero = () => {
-
   const { isAdmin, isAuthenticated, isLoading } = useStoreUserEffect();
   return (
     <div className="relative w-full h-[calc(100vh-10px)] min-h-screen overflow-hidden">
@@ -119,17 +149,11 @@ const Hero = () => {
           </h1>
           <AnimatedText services={BannerServices} />
           <p className="text-xl sm:text-2xl lg:text-3xl mt-4 animate-slideUp">
-            We simplify the digital transformation journeys of businesses through
-            smart and innovative software solutions.
+            We simplify the digital transformation journeys of businesses
+            through smart and innovative software solutions.
           </p>
         </div>
-        <div>
-          {isAdmin && (
-            <div>
-              hello admin 
-            </div>
-          )}
-        </div>
+
         <HeroBannerNavigation />
       </section>
     </div>
