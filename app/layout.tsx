@@ -3,6 +3,7 @@ import "./globals.css";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import ConvexClerkProvider from "@/components/providers/clerk-convex-provider";
 
 export const metadata: Metadata = {
   title:
@@ -57,7 +58,9 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system">
+          <ConvexClerkProvider>
           {children}
+          </ConvexClerkProvider>
         </ThemeProvider>
       </body>
     </html>

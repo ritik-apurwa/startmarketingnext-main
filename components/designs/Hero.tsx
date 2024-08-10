@@ -5,6 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaCamera, FaCloud, FaCode, FaHashtag, FaMobile, FaPaintBrush } from "react-icons/fa";
 import { IconType } from "react-icons";
+import {SignInButton} from "@clerk/nextjs"
+
+
 
 interface BannerServiceInterface {
   title: string;
@@ -71,25 +74,31 @@ AnimatedText.displayName = "AnimatedText";
 
 const HeroBannerNavigation = memo(() => (
   <div className="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-    <Link
-      href="/#Logos"
-      className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition duration-300 ease-in-out"
+    <Button asChild
+
+      className="bg-transparent border-2 h-12 flex items-center  border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition duration-300 ease-in-out"
     >
-      See Work
-    </Link>
+      <SignInButton/>
+    </Button>
     <Link
       href="/contact"
       className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-transparent hover:text-white hover:border-white hover:border-2 transition duration-300 ease-in-out"
     >
       Contact Us
     </Link>
+
+ 
   </div>
 ));
 
 HeroBannerNavigation.displayName = "HeroBannerNavigation";
 import Banner from "@/public/heroimages/bannerImg.jpg"
+import { Button } from "../ui/button";
+import { useStoreUserEffect } from "../providers/auth-status";
 
 const Hero = () => {
+
+  const { isAdmin, isAuthenticated, isLoading } = useStoreUserEffect();
   return (
     <div className="relative w-full h-[calc(100vh-10px)] min-h-screen overflow-hidden">
       <Image
@@ -113,6 +122,13 @@ const Hero = () => {
             We simplify the digital transformation journeys of businesses through
             smart and innovative software solutions.
           </p>
+        </div>
+        <div>
+          {isAdmin && (
+            <div>
+              hello admin 
+            </div>
+          )}
         </div>
         <HeroBannerNavigation />
       </section>
