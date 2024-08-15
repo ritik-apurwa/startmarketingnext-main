@@ -24,6 +24,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const UserSkeleton = () => (
   <TableRow className="hover:bg-accent transition-colors">
@@ -44,6 +46,32 @@ const UserSkeleton = () => (
     </TableCell>
   </TableRow>
 );
+
+const AdminLogout = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    // Clear the local storage
+    localStorage.removeItem("accessKey");
+    localStorage.removeItem("adminEmail");
+  }, []);
+
+  const handleRedirect = () => {
+    router.push("/");
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h1 className="text-2xl font-bold mb-4">You have been logged out.</h1>
+      <Button
+        onClick={handleRedirect}
+        className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+      >
+        Go to Home Page
+      </Button>
+    </div>
+  );
+};
 
 const UserList = () => {
   const totalUsers = useQuery(api.users.getAll);
@@ -138,6 +166,9 @@ const UserList = () => {
           </TableBody>
         </Table>
       </section>
+
+      {/* Admin Logout */}
+      <AdminLogout />
     </div>
   );
 };
