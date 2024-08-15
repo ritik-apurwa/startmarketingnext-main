@@ -1,5 +1,6 @@
 import Footer from "@/components/designs/footer/Footer";
 import Navbar from "@/components/designs/navbar/Navbar";
+import { PasskeyModal } from "@/components/providers/paaskey-modal";
 import React from "react";
 
 export default function RootLayout({
@@ -14,6 +15,7 @@ export default function RootLayout({
       </div>
       <main className="flex-1">{children}</main>
       <Footer />
+      <PasskeyModal/>
     </section>
   );
 }
